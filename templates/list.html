@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+</head>
+<body>
+    <h1>Task List</h1>
+    <a href="{% url 'create' %}">Create New Task</a>
+    <ul>
+        {% for task in tasks %}
+            <li>
+                <a href="{% url 'detail' task.pk %}">{{ task.title }}</a> - {{ task.get_status_display }} - {{ task.deadline }}
+                <a href="{% url 'update' task.pk %}">Edit</a>
+                <a href="{% url 'delete' task.pk %}">Delete</a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
